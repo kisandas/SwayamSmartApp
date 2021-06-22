@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
         click_fun()
 
         if(checkAndRequestPermissions()) {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+            if (
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 return
@@ -155,7 +155,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkAndRequestPermissions(): Boolean {
-        val permissionSendMessage = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+ 
         val read_permissionSendMessage = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
         val camera_Permission = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
         val listPermissionsNeeded: MutableList<String> = ArrayList()
@@ -164,9 +164,7 @@ class LoginActivity : AppCompatActivity() {
             listPermissionsNeeded.add(Manifest.permission.CAMERA)
         }
 
-        if (permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
-            listPermissionsNeeded.add(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        }
+    
 
         if (read_permissionSendMessage != PackageManager.PERMISSION_GRANTED) {
             listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -184,7 +182,7 @@ class LoginActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_ID_MULTIPLE_PERMISSIONS -> {
                 val perms: MutableMap<String, Int> = HashMap()
-                perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] = PackageManager.PERMISSION_GRANTED
+               
                 perms[Manifest.permission.READ_EXTERNAL_STORAGE] = PackageManager.PERMISSION_GRANTED
                 perms[Manifest.permission.CAMERA] = PackageManager.PERMISSION_GRANTED
                 if (grantResults.size > 0) {
@@ -193,13 +191,13 @@ class LoginActivity : AppCompatActivity() {
                         perms[permissions[i]] = grantResults[i]
                         i++
                     }
-                    if (perms[Manifest.permission.WRITE_EXTERNAL_STORAGE] == PackageManager.PERMISSION_GRANTED &&
+                    if (
                         perms[Manifest.permission.READ_EXTERNAL_STORAGE] == PackageManager.PERMISSION_GRANTED &&
                         perms[Manifest.permission.CAMERA] == PackageManager.PERMISSION_GRANTED){
                         Log.e("Permission", "sms & location services permission granted")
                     } else {
                         Log.e("Permission", "Some permissions are not granted ask again ")
-                        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)||
+                        if (
                             ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                             || ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA))
                         {
