@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.sngs.swayam.temp">
+
+    <uses-sdk android:targetSdkVersion="26" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
+
+    <uses-feature
+        android:name="android.hardware.sensor.stepcounter"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="false"
+        android:icon="@drawable/app_logo"
+        android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/app_logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+        <activity android:name="com.sngs.swayam.temp.Activity.ReadWidth" />
+        <activity android:name="com.sngs.swayam.temp.Activity.ReadHeight" />
+        <activity android:name="com.sngs.swayam.temp.Activity.ReadAge" />
+        <activity android:name="com.sngs.swayam.temp.Activity.datausage.DataUsagesActivity" />
+        <activity android:name="com.sngs.swayam.temp.Activity.offer.OfferDetailActivity" />
+        <activity android:name="com.sngs.swayam.temp.Activity.offer.OfferActivity" />
+        <activity android:name="com.sngs.swayam.temp.Activity.editprofile.EditProfileActivity" />
+        <activity
+            android:name="droidninja.filepicker.FilePickerActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="droidninja.filepicker.MediaDetailsActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait" />
+                <activity android:name="com.sngs.swayam.temp.User.LoginActivity">
+                    <intent-filter>
+                        <action android:name="android.intent.action.MAIN" />
+
+                        <category android:name="android.intent.category.LAUNCHER" />
+                    </intent-filter>
+                </activity>
+
+
+        <activity
+            android:name="com.sngs.swayam.temp.pademeter.pedemer.ui.Activity_Main"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"></activity>
+
+
+        <receiver android:name="com.sngs.swayam.temp.pademeter.Broadcast_Save_Userdata">
+            <intent-filter>
+                <!--                <action android:name="android.intent.action.TIME_TICK"/>-->
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.sngs.swayam.temp.pademeter.BootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.sngs.swayam.temp.pademeter.AppUpdatedReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.sngs.swayam.temp.pademeter.SensorListener" />
+
+        <service
+            android:name="com.sngs.swayam.temp.pademeter.widget.DashClock"
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
+            <intent-filter>
+                <action android:name="com.google.android.apps.dashclock.Extension" />
+            </intent-filter>
+
+            <meta-data
+                android:name="protocolVersion"
+                android:value="2" />
+            <meta-data
+                android:name="worldReadable"
+                android:value="true" />
+            <meta-data
+                android:name="description"
+                android:value="Displays the steps taken today" />
+        </service>
+
+        <activity
+            android:name="com.sngs.swayam.temp.pademeter.widget.WidgetConfig"
+            android:theme="@android:style/Theme.Holo.Dialog.NoActionBar">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name="com.sngs.swayam.temp.pademeter.widget.Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget" />
+        </receiver>
+
+        <service
+            android:name="com.sngs.swayam.temp.pademeter.widget.WidgetUpdateService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+
+        <activity android:name="com.sngs.swayam.temp.User.SignupActivity" />
+        <activity android:name="com.sngs.swayam.temp.User.VerificationActivity" />
+        <activity android:name="com.sngs.swayam.temp.Activity.HomeActivity" />
+        <activity android:name="com.sngs.swayam.temp.Activity.area.State_City_List_Activity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.imageprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <service
+            android:name="com.sngs.swayam.temp.Activity.service.MessagingService"
+            android:directBootAware="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <receiver
+            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            </intent-filter>
+        </receiver>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/app_logo" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+
+
+    </application>
+
+</manifest>

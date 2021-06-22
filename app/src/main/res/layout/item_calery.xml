@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_2sdp">
+
+    <TextView
+        android:id="@+id/txtcalery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_marginRight="@dimen/_2sdp"
+        android:layout_toLeftOf="@+id/imgcalry"
+        android:text="Samosa"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp">
+
+    </TextView>
+
+    <ImageView
+        android:id="@+id/imgcalry"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:src="@drawable/app_logo" />
+</RelativeLayout>
